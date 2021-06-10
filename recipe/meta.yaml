@@ -18,27 +18,38 @@ build:
     script: python -m pip install --no-deps --ignore-installed .
 
 requirements:
-    host:
-        - python
-        - pip
-    run:
-        - python
-        - notebook >=4.2
-        - ipykernel >=4.2.2
-        - ipywidgets >=5.0.0
-        - ipython
-        - numpy
-        - pandas
+  host:
+    - pip
+    - python
+    - setuptools
+    - wheel
+  run:
+    - ipykernel >=4.2.2
+    - ipython >=4.0.2
+    - ipywidgets >5.0.0
+    - jupyter >=1
+    - mock
+    - nose
+    - notebook >=4.2
+    - numpy
+    - pandas >=0.17.1
+    - python >=3.6
 
 test:
-    imports:
-        - hdijupyterutils
+  imports:
+    - hdijupyterutils
+  requires:
+    - pip
+  commands:
+    - pip check || true
 
 about:
-    home: https://github.com/jupyter-incubator/sparkmagic/tree/master/hdijupyterutils
-    license: BSD 3-clause
-    summary: Project with useful classes/methods for all projects created by the HDInsight team at Microsoft around Jupyter
-
+  home: https://github.com/jupyter-incubator/sparkmagic/tree/master/hdijupyterutils
+  license: BSD-3-clause
+  license_family: BSD
+  license_file: LICENSE.md
+  summary: Project with useful classes/methods for all projects created by the HDInsight team at Microsoft around Jupyter
+  dev_url: https://github.com/jupyter-incubator/sparkmagic/tree/master/hdijupyterutils
 extra:
   recipe-maintainers:
     - danielfrg
