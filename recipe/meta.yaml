@@ -47,7 +47,6 @@ about:
   home: https://github.com/jupyter-incubator/sparkmagic/tree/master/hdijupyterutils
   license: BSD-3-clause
   license_family: BSD
-  license_file: LICENSE.md
   summary: Project with useful classes/methods for all projects created by the HDInsight team at Microsoft around Jupyter
   dev_url: https://github.com/jupyter-incubator/sparkmagic/tree/master/hdijupyterutils
 extra:
