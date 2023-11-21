@@ -1,7 +1,7 @@
 {% set name = "hdijupyterutils" %}
-{% set version = "0.20.0" %}
+{% set version = "0.21.0" %}
 {% set hash_type = "sha256" %}
-{% set hash_val = "8785d4d89bced6b49347957af67c46814b096cb3d2d6f8effaf95a8e3f485d8c" %}
+{% set hash_val = "bc122b07cb66ea3ce4d5858154a8fb86b93e6a19e08154198751353d453accee" %}
 
 package:
     name: {{ name }}
@@ -14,10 +14,7 @@ source:
 
 build:
     number: 0
-    # The downstream sparkmagic dropped support for Python 3.6,
-    # see https://github.com/jupyter-incubator/sparkmagic/blob/0.20.0/CHANGELOG.md#updates
-    skip: True  # [py<37]
-    script: {{ PYTHON }} -m pip install --no-deps --ignore-installed . -vv
+    script: {{ PYTHON }} -m pip install --no-deps --no-build-isolation --ignore-installed . -vv
 
 requirements:
   host:
@@ -27,15 +24,13 @@ requirements:
     - wheel
   run:
     - python
-    - ipykernel >=4.2.2
-    - ipython >=5
+    - ipython >=4.0.2
     - ipywidgets >5.0.0
+    - ipykernel >=4.2.2
     - jupyter >=1
-    - mock
-    - nose
+    - pandas >=0.17.1,<2.0.0
+    - numpy >=1.16.5
     - notebook >=4.2
-    - numpy
-    - pandas >=0.17.1
 
 test:
   imports:
@@ -43,15 +38,19 @@ test:
   requires:
     - pip
   commands:
-    - pip check || true
+    # For passing pip check: "jupyter 1.0.0 requires qtconsole, which is not installed."
+    - pip check || true      # [not win]
+    - pip check || (exit 1)  # [win]
 
 about:
   home: https://github.com/jupyter-incubator/sparkmagic/tree/master/hdijupyterutils
   license: BSD-3-Clause
+  license_file: LICENSE.md
   license_family: BSD
-  license_url: https://github.com/jupyter-incubator/sparkmagic/blob/master/hdijupyterutils/LICENSE.md
   summary: Project with useful classes/methods for all projects created by the HDInsight team at Microsoft around Jupyter
   dev_url: https://github.com/jupyter-incubator/sparkmagic/tree/master/hdijupyterutils
+  doc_url: https://github.com/jupyter-incubator/sparkmagic/tree/master/hdijupyterutils
+
 extra:
   recipe-maintainers:
     - danielfrg
