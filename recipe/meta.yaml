@@ -35,7 +35,6 @@ test:
   requires:
     - pip
   commands:
-    # For passing pip check: "jupyter 1.0.0 requires qtconsole, which is not installed."
     - pip check
 
 about:
